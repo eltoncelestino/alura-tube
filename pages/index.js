@@ -4,6 +4,7 @@ import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/TimeLine';
 
+/* eslint-disable @next/next/no-img-element */
 export default function Home() {
 
   return (
@@ -44,7 +45,7 @@ function Header() {
   return (
     <StyledHeader>
       {/* <img src="banner" /> */}
-
+      
       <section className="user-infor">
         <img src={`https://github.com/${config.github}.png`} />
 
