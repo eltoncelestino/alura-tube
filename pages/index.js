@@ -3,7 +3,7 @@ import config from '../config.json'
 import styled from 'styled-components'
 import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
-import { StyledTimeline } from '../src/components/TimeLine';
+import { StyledTimeline } from '../src/components/Timeline';
 
 export default function Home() {
   const [valorDoFiltro, setValorDoFiltro] = React.useState('');
@@ -20,7 +20,9 @@ export default function Home() {
       >
         <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
         <Header />
-        <TimeLine searchValue={valorDoFiltro} playlists={config.playlists} />
+        <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
+          Conteúdo
+        </Timeline>
       </div>
     </>
   )
@@ -68,7 +70,7 @@ function Header() {
   )
 }
 
-function TimeLine({searchValue, ...props}) {
+function Timeline({searchValue, ...props}) {
   const playlistNames = Object.keys(props.playlists);
 
   return (
