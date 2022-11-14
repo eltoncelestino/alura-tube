@@ -5,14 +5,33 @@ import config from '../config.json'
 
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
+import { videoService } from '../src/services/videoService';
 
 export default function Home() {
+  const service = videoService();
+
   const [valorDoFiltro, setValorDoFiltro] = React.useState('');
+  const [playlists, setPlaylists] = React.useState({});
+
+  React.useEffect(() => {
+    service
+      .getAllVideos()
+      .then((dados) => {
+        const novasPlaylists = { ...playlists };
+        dados.data.forEach((video) => {
+          if (!novasPlaylists[video.playlist]) {
+            novasPlaylists[video.playlist] = [];
+          }
+          novasPlaylists[video.playlist]?.push(video);
+        })
+        setPlaylists(novasPlaylists);
+      });
+  }, []);
 
   return (
     <>
-      
-      <div 
+
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -21,7 +40,7 @@ export default function Home() {
       >
         <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
         <Header />
-        <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
+        <Timeline searchValue={valorDoFiltro} playlists={playlists}>
           Conteúdo
         </Timeline>
       </div>
@@ -49,7 +68,6 @@ const StyledHeader = styled.div`
 
 const StyledBanner = styled.div`
   background-image: url(${({ bg }) => bg});
-  /* background-image: url(${config.bg}) */
   height: 230px;
   width: 100%;
 `;
@@ -58,7 +76,7 @@ function Header() {
   return (
     <StyledHeader>
       <StyledBanner bg={config.bg} />
-      
+
       <section className="user-infor">
         <img src={`https://github.com/${config.github}.png`} />
 
@@ -73,7 +91,7 @@ function Header() {
   )
 }
 
-function Timeline({searchValue, ...props}) {
+function Timeline({ searchValue, ...props }) {
   const playlistNames = Object.keys(props.playlists);
 
   return (
@@ -83,25 +101,25 @@ function Timeline({searchValue, ...props}) {
 
         return (
           <section key={playlistName}>
-              <h2>{playlistName}</h2>
-              <div>
-                {videos
-                  .filter((video) => {
-                      const titleNormalized = video.title.toLowerCase();
-                      const searchValueNormalized = searchValue.toLowerCase();
-                      return titleNormalized.includes(searchValueNormalized)
-                  })
-                  .map((video) => {
-                      return (
-                          <a key={video.url} href={video.url}>
-                              <img src={video.thumb} />
-                              <span>
-                                  {video.title}
-                              </span>
-                          </a>
-                      )
+            <h2>{playlistName}</h2>
+            <div>
+              {videos
+                .filter((video) => {
+                  const titleNormalized = video.title.toLowerCase();
+                  const searchValueNormalized = searchValue.toLowerCase();
+                  return titleNormalized.includes(searchValueNormalized)
+                })
+                .map((video) => {
+                  return (
+                    <a key={video.url} href={video.url}>
+                      <img src={video.thumb} />
+                      <span>
+                        {video.title}
+                      </span>
+                    </a>
+                  )
                 })}
-              </div>
+            </div>
           </section>
         )
       })}
