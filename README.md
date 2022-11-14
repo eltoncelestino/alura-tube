@@ -40,5 +40,5 @@ It was developed using NextJS, Styled Components and Supabase to store registere
    ```
 4. Run Project
  ```sh
-   npm run dev
+   npm start
    ```
