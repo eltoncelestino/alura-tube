@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div style="display: flex; flex-direction: row">
 
-## Getting Started
+</div>
 
-First, run the development server:
+# AluraTube
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Project developed during Alura's React.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### About the project
+It was developed using NextJS, Styled Components and Supabase to store registered videos. Important React topics, components, properties, states, hooks, context API were covered. Also discussed was how to consume an API.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Project demo
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<div align="center">
+   <img src="./public/dark.PNG" alt="Projeto dark mode">
+   <img src="./public/light.PNG" alt="Projeto light mode">
+   <img src="./public/register.PNG" alt="Cadastrar vídeo">
+</div>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Technologies used
+* NextJS
+* Styled Components
+* Supabase
+* Context API
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Enter your supabase in `.env`
+   ```js
+   NEXT_PUBLIC_SUPABASE_URL = 'ENTER YOUR PUBLIC URL';
+   NEXT_PUBLIC_SUPABASE_ANON_KEY = 'ENTER YOUR PUBLIC KEY';
+   ```
+4. Run Project
+ ```sh
+   npm run dev
+   ```
